@@ -4,6 +4,7 @@ import fetchWithRetry from "@/functions/api";
 import Icon from "@/components/Icon";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import NearWallet from "@/components/wallet/NearWallet";
 
 const Avatar = dynamic(() => import("@/components/profile/Avatar"), {
   loading: () => <p>내 정보를 조회하는 중입니다...</p>,
@@ -59,6 +60,7 @@ export default async function ProfilePage() {
       <article className="wrapper">
         <div className="frame-76">
           <Avatar profile={profile} />
+          <NearWallet />
           <div className="frame-42">
             {/* <div className="frame-44-2"> */}
             <div className="frame-34-6 background-white border-gray-06">
