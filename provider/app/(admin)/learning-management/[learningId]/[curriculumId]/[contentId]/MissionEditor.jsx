@@ -76,6 +76,32 @@ export default function MissionEditor({
         />
       </div>
       <div className="input-2">
+        <label className="h5-18 color-gray-03" htmlFor="token">
+          토큰
+        </label>
+        <select
+          className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
+          name="token"
+          id="token"
+        >
+          <option value="NEAR">NEAR</option>
+          <option value="USDT">USDT</option>
+          <option value="USDC">USDC</option>
+        </select>
+      </div>
+      <div className="input-2">
+        <label className="h5-18 color-gray-03" htmlFor="amount">
+          금액
+        </label>
+        <input
+          className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
+          type="number"
+          name="amount"
+          id="amount"
+          defaultValue={orderNum}
+        />
+      </div>
+      <div className="input-2">
         <p className="h5-18 color-gray-03">내용</p>
         <div className="frame-102-4 background-white content-editor">
           <Editor editorRef={editorRef} content={description} height="100%" />
