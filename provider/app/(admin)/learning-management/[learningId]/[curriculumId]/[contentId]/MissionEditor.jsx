@@ -24,8 +24,17 @@ const SubmitButton = () => {
 };
 
 export default function MissionEditor({
-  mission: { title, orderNum, description, missionSubmitForm, ...mission },
+  mission: {
+    title,
+    orderNum,
+    description,
+    missionSubmitForm,
+    rewardToken,
+    rewardAmount,
+    ...mission
+  },
   postingId,
+  coinList,
 }) {
   const editorRef = useRef();
   const submitFormEditorRef = useRef();
@@ -41,6 +50,8 @@ export default function MissionEditor({
         description: editorInstance.getMarkdown(),
         missionSubmitForm: submitFormEditorInstance.getMarkdown(),
         orderNum: missionData.get("orderNum"),
+        rewardToken: missionData.get("rewardToken"),
+        rewardAmount: missionData.get("rewardAmount"),
         mission,
       });
     } catch ({ message }) {
@@ -76,29 +87,32 @@ export default function MissionEditor({
         />
       </div>
       <div className="input-2">
-        <label className="h5-18 color-gray-03" htmlFor="token">
+        <label className="h5-18 color-gray-03" htmlFor="rewardToken">
           토큰
         </label>
         <select
           className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
-          name="token"
-          id="token"
+          name="rewardToken"
+          id="rewardToken"
+          defaultValue={rewardToken}
         >
-          <option value="NEAR">NEAR</option>
-          <option value="USDT">USDT</option>
-          <option value="USDC">USDC</option>
+          {coinList.map(({ coin, id }) => (
+            <option key={id} value={id}>
+              {coin.name}
+            </option>
+          ))}
         </select>
       </div>
       <div className="input-2">
-        <label className="h5-18 color-gray-03" htmlFor="amount">
+        <label className="h5-18 color-gray-03" htmlFor="rewardAmount">
           금액
         </label>
         <input
           className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
           type="number"
-          name="amount"
-          id="amount"
-          defaultValue={orderNum}
+          name="rewardAmount"
+          id="rewardAmount"
+          defaultValue={rewardAmount}
         />
       </div>
       <div className="input-2">
