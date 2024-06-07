@@ -84,8 +84,8 @@ export default function Viewer({ content, height }) {
         });
 
         // 코드 블록에 복사 버튼 추가
-        document.querySelectorAll('pre').forEach((pre) => {
-          const code = pre.querySelector('code');
+        document.querySelectorAll('codeBlock').forOf((codeBlock) => {
+          const code = codeBlock.querySelector('code');
           const button = document.createElement('button');
           button.innerText = '복사';
           button.style.position = 'absolute';
@@ -103,8 +103,8 @@ export default function Viewer({ content, height }) {
             copyToClipboard(code.innerText, button);
           });
 
-          pre.style.position = 'relative';
-          pre.appendChild(button);
+          codeBlock.style.position = 'relative';
+          codeBlock.appendChild(button);
         });
 
       } catch (error) {
@@ -121,8 +121,8 @@ export default function Viewer({ content, height }) {
     viewerRef.current.viewerInstance.setMarkdown(content);
 
     // 마크다운 변경 시 코드 블록에 복사 버튼 다시 추가
-    document.querySelectorAll('pre').forEach((pre) => {
-      const code = pre.querySelector('code');
+    document.querySelectorAll('codeBlock').forEach((codeBlock) => {
+      const code = codeBlock.querySelector('code');
       const button = document.createElement('button');
       button.innerText = '복사';
       button.style.position = 'absolute';
@@ -140,8 +140,8 @@ export default function Viewer({ content, height }) {
         copyToClipboard(code.innerText, button);
       });
 
-      pre.style.position = 'relative';
-      pre.appendChild(button);
+      codeBlock.style.position = 'relative';
+      codeBlock.appendChild(button);
     });
   }, [content]);
 
