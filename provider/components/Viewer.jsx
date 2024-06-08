@@ -1,19 +1,22 @@
 "use client";
-
 import "@toast-ui/editor/dist/toastui-editor.css";
 import DOMPurify from "dompurify";
 import { useEffect, useRef } from "react";
 
+// 복사 기능 구현
 const copyToClipboard = (text, button) => {
-  navigator.clipboard.writeText(text).then(() => {
-    const originalText = button.innerText;
-    button.innerText = '복사됨';
-    setTimeout(() => {
-      button.innerText = originalText;
-    }, 2000);
-  }).catch(err => {
-    console.error('복사 실패: ', err);
-  });
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      const originalText = button.innerText;
+      button.innerText = "복사됨";
+      setTimeout(() => {
+        button.innerText = originalText;
+      }, 2000);
+    })
+    .catch((err) => {
+      console.error("복사 실패: ", err);
+    });
 };
 
 export default function Viewer({ content, height }) {
@@ -24,12 +27,9 @@ export default function Viewer({ content, height }) {
       const toastViewer = (
         await import("@toast-ui/editor/dist/toastui-editor-viewer")
       ).default;
-
       try {
         if (viewerRef.current === null) return;
-
         viewerRef.current.innerText = "";
-
         viewerRef.current.viewerInstance = new toastViewer({
           el: viewerRef.current,
           width: "100%",
@@ -82,35 +82,28 @@ export default function Viewer({ content, height }) {
           },
         });
 
-        const codeBlocks = document.querySelectorAll('codeBlock');
-        for (const codeBlock of codeBlocks) {
-          const code = codeBlock.querySelector('code');
-          const button = document.createElement('button');
-          button.innerText = '복사';
-          button.style.position = 'absolute';
-          button.style.top = '5px';
-          button.style.right = '5px';
-          button.style.background = '#d1a0ff';
-          button.style.color = 'white';
-          button.style.border = 'none';
-          button.style.borderRadius = '3px';
-          button.style.padding = '5px 10px';
-          button.style.cursor = 'pointer';
-          button.style.fontSize = '12px';
+        // 코드 블록에 복사 버튼 추가
+        const preElements = document.querySelectorAll("pre");
+        for (const codeBlock of preElements) {
+          const code = codeBlock.querySelector("code");
+          const buttonWrapper = document.createElement("div");
+          buttonWrapper.classList.add("flex-end");
+          const button = document.createElement("button");
+          button.innerText = "복사";
+          button.classList.add("copy-button");
 
-          button.addEventListener('click', () => {
+          button.addEventListener("click", () => {
             copyToClipboard(code.innerText, button);
           });
 
-          codeBlock.style.position = 'relative';
-          codeBlock.appendChild(button);
+          buttonWrapper.appendChild(button);
+          codeBlock.style.position = "relative";
+          codeBlock.insertBefore(buttonWrapper, codeBlock.firstChild);
         }
-
       } catch (error) {
         console.error(error);
       }
     };
-
     putViewer();
   }, []);
 
@@ -119,27 +112,22 @@ export default function Viewer({ content, height }) {
 
     viewerRef.current.viewerInstance.setMarkdown(content);
 
-    const codeBlocks = document.querySelectorAll('codeBlock');
-    for (const codeBlock of codeBlocks) {
-      const code = codeBlock.querySelector('code');
-      const button = document.createElement('button');
-      button.innerText = '복사';
-      button.style.position = 'absolute';
-      button.style.top = '5px';
-      button.style.right = '5px';
-      button.style.background = '#d1a0ff';
-      button.style.color = 'white';
-      button.style.border = 'none';
-      button.style.borderRadius = '3px';
-      button.style.padding = '5px 10px';
-      button.style.cursor = 'pointer';
-      button.style.fontSize = '12px';
-      button.addEventListener('click', () => {
+    // 마크다운 변경 시 코드 블록에 복사 버튼 다시 추가
+    const preElements = document.querySelectorAll("pre");
+    for (const codeBlock of preElements) {
+      const code = codeBlock.querySelector("code");
+      const buttonWrapper = document.createElement("div");
+      buttonWrapper.classList.add("flex-end");
+      const button = document.createElement("button");
+      button.innerText = "복사";
+      button.classList.add("copy-button");
+
+      button.addEventListener("click", () => {
         copyToClipboard(code.innerText, button);
       });
 
-      codeBlock.style.position = 'relative';
-      codeBlock.appendChild(button);
+      buttonWrapper.appendChild(button);
+      codeBlock.insertBefore(buttonWrapper, codeBlock.firstChild);
     }
   }, [content]);
 
