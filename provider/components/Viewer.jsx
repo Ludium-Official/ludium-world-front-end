@@ -3,7 +3,6 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import DOMPurify from "dompurify";
 import { useEffect, useRef } from "react";
 
-// 복사 기능 구현
 const copyToClipboard = (text, button) => {
   navigator.clipboard
     .writeText(text)
@@ -82,7 +81,6 @@ export default function Viewer({ content, height }) {
           },
         });
 
-        // 코드 블록에 복사 버튼 추가
         const preElements = document.querySelectorAll("pre");
         for (const codeBlock of preElements) {
           const code = codeBlock.querySelector("code");
@@ -112,7 +110,6 @@ export default function Viewer({ content, height }) {
 
     viewerRef.current.viewerInstance.setMarkdown(content);
 
-    // 마크다운 변경 시 코드 블록에 복사 버튼 다시 추가
     const preElements = document.querySelectorAll("pre");
     for (const codeBlock of preElements) {
       const code = codeBlock.querySelector("code");
