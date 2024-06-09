@@ -164,6 +164,7 @@ export default async function MissionList({ usrId }) {
                         missionId={mission.missionId}
                         coinNetworkId={mission.rewardToken}
                         amount={mission.rewardAmount}
+                        rewardClaimStatus={mission.rewardClaimStatus}
                       />
                     )}
                   </div>

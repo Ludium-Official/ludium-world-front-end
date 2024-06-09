@@ -1,6 +1,7 @@
 "use server";
 
 import HTTP_METHOD from "@/enums/HTTP_METHOD";
+import { TRANSACTION_CODE } from "@/enums/REWARD_CLAIM_STATUS";
 import { fetchPayment } from "@/functions/api";
 import { revalidatePath } from "next/cache";
 import { cookies, headers } from "next/headers";
@@ -10,7 +11,11 @@ export async function claimMissionReward({
   coinNetworkId,
   amount,
   userAddress,
+  rewardClaimStatus,
 }) {
+  if (TRANSACTION_CODE[rewardClaimStatus] === 1)
+    throw new Error("이미 보상이 요청되었습니다.");
+
   const cookieStore = cookies();
   const header = headers();
 
