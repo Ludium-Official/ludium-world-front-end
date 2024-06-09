@@ -1,7 +1,13 @@
-import fetchWithRetry from "@/functions/api";
+import fetchWithRetry, { fetchPayment } from "@/functions/api";
 import ko_kr from "@/langs/ko_kr";
+import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { Fragment } from "react";
+import MissionRewardClaimButton from "./MissionRewardClaimButton";
+import {
+  TRANSACTION_CODE,
+  TRANSACTION_VALUES,
+} from "@/enums/REWARD_CLAIM_STATUS";
 
 async function getMissionList(usrId) {
   const getMissionListResponse = await fetchWithRetry(
@@ -15,8 +21,33 @@ async function getMissionList(usrId) {
   return await getMissionListResponse.json();
 }
 
+async function getCoinList() {
+  const cookieStore = cookies();
+  const header = headers();
+  const networkCode = process.env.NEXT_PUBLIC_NETWORK_CODE;
+
+  const getCoinListResponse = await fetchPayment(
+    `/api/coin-networks?network_code=${networkCode}`,
+    {
+      headers: {
+        cookie: cookieStore,
+        "x-user-right": header.get("x-user-right"),
+      },
+    }
+  );
+
+  if (!getCoinListResponse.ok) {
+    throw new Error("코인을 조회하는 중 에러가 발생했습니다.");
+  }
+
+  return getCoinListResponse.json();
+}
+
 export default async function MissionList({ usrId }) {
   const missions = await getMissionList(usrId);
+  const coins = await getCoinList();
+
+  console.log(missions);
 
   return (
     <div className="frame-93-7">
@@ -79,12 +110,17 @@ export default async function MissionList({ usrId }) {
                 </div>
                 <div className="frame-101-3">
                   <div className={`frame-97 border-none`}>
-                    <h4 className={`h4-20`}>NEAR</h4>
+                    <h4 className={`h4-20`}>
+                      {mission.rewardToken == null
+                        ? "없음"
+                        : coins.find(({ id }) => id === mission.rewardToken)
+                            .coin.symbol}
+                    </h4>
                   </div>
                 </div>
                 <div className="frame-101-3">
                   <div className={`frame-97 border-none`}>
-                    <h4 className={`h4-20`}>1,000</h4>
+                    <h4 className={`h4-20`}>{mission.rewardAmount ?? 0}</h4>
                   </div>
                 </div>
                 <div className="frame-101-3">
@@ -108,14 +144,28 @@ export default async function MissionList({ usrId }) {
                 </div>
                 <div className="frame-101-3">
                   <div className={`frame-97 border-none`}>
-                    <h4 className={`h4-20`}>요청 안됨</h4>
+                    {mission.rewardToken == null ||
+                    mission.rewardAmount == null ? null : (
+                      <h4 className={`h4-20`}>
+                        {mission.rewardClaimStatus == null
+                          ? "요청 안됨"
+                          : TRANSACTION_VALUES[
+                              TRANSACTION_CODE[mission.rewardClaimStatus]
+                            ]}
+                      </h4>
+                    )}
                   </div>
                 </div>
                 <div className="frame-101-3">
                   <div className={`frame-97 border-none`}>
-                    <button type="button">
-                      <h4 className={`h4-20`}>보상 요청</h4>
-                    </button>
+                    {mission.rewardToken == null ||
+                    mission.rewardAmount == null ? null : (
+                      <MissionRewardClaimButton
+                        missionId={mission.missionId}
+                        coinNetworkId={mission.rewardToken}
+                        amount={mission.rewardAmount}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
