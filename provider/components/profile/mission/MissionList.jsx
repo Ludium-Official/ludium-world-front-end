@@ -8,6 +8,7 @@ import {
   TRANSACTION_CODE,
   TRANSACTION_VALUES,
 } from "@/enums/REWARD_CLAIM_STATUS";
+import MissionRewardBatchClaimButton from "./MissionRewardBatchClaimButton";
 
 async function getMissionList(usrId) {
   const getMissionListResponse = await fetchWithRetry(
@@ -86,9 +87,7 @@ export default async function MissionList({ usrId }) {
             </div>
             <div className="frame-101-3">
               <div className="frame-93-8">
-                <button type="button">
-                  <h4 className={`h4-20`}>일괄 요청</h4>
-                </button>
+                {/* <MissionRewardBatchClaimButton /> */}
               </div>
             </div>
           </div>
