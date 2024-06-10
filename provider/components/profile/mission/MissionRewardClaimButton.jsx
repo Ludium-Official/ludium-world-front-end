@@ -11,10 +11,18 @@ const SubmitButton = ({ rewardClaimStatus }) => {
   return (
     <button
       type="submit"
-      disabled={TRANSACTION_CODE[rewardClaimStatus] === 1 || pending}
+      disabled={
+        [
+          TRANSACTION_CODE.READY,
+          TRANSACTION_CODE.TRANSACTION_APPROVED,
+        ].includes(TRANSACTION_CODE[rewardClaimStatus]) || pending
+      }
     >
       <h4 className={`h4-20`}>
-        {TRANSACTION_CODE[rewardClaimStatus] === 1
+        {TRANSACTION_CODE[rewardClaimStatus] === TRANSACTION_CODE.READY
+          ? "요청중"
+          : TRANSACTION_CODE[rewardClaimStatus] ===
+            TRANSACTION_CODE.TRANSACTION_APPROVED
           ? "요청 완료"
           : pending
           ? "요청중"
