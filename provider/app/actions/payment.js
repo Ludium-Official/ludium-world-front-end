@@ -24,38 +24,29 @@ export async function claimMissionReward({
   const cookieStore = cookies();
   const header = headers();
 
-  try {
-    const res = await fetchPayment("/api/reward-claims", {
-      method: HTTP_METHOD.POST,
-      body: JSON.stringify({
-        mission_id: missionId,
-        coin_network_id: coinNetworkId,
-        amount: amount.toString(),
-        user_address: userAddress,
-      }),
-      headers: {
-        cookie: cookieStore,
-        "x-user-right": header.get("x-user-right"),
-      },
-    }).catch((err) => {
-      console.error("123", err);
-      throw new Error(err.message);
-    });
+  const res = await fetchPayment("/api/reward-claims", {
+    method: HTTP_METHOD.POST,
+    body: JSON.stringify({
+      mission_id: missionId,
+      coin_network_id: coinNetworkId,
+      amount: amount.toString(),
+      user_address: userAddress,
+    }),
+    headers: {
+      cookie: cookieStore,
+      "x-user-right": header.get("x-user-right"),
+    },
+  });
 
-    if (!res.ok) {
-      if (res.status === 400) {
-        const result = await res.json();
+  if (!res.ok) {
+    if (res.status === 400) {
+      const result = await res.json();
 
-        throw new Error(result.message);
-      } else if (res.status === 409) {
-        throw new Error("이미 요청된 보상입니다.");
-      } else {
-        throw new Error("보상을 요청하는 중 에러가 발생했습니다.");
-      }
+      throw new Error(result.message);
+    } else if (res.status === 409) {
+      throw new Error("이미 요청된 보상입니다.");
+    } else {
+      throw new Error("보상을 요청하는 중 에러가 발생했습니다.");
     }
-  } catch (error) {
-    throw new Error("보상을 요청하는 중 에러가 발생했습니다.");
-  } finally {
-    revalidatePath("/(common)/profile/mission");
   }
 }

@@ -3,12 +3,7 @@ import ko_kr from "@/langs/ko_kr";
 import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { Fragment } from "react";
-import MissionRewardClaimButton from "./MissionRewardClaimButton";
-import {
-  TRANSACTION_CODE,
-  TRANSACTION_VALUES,
-} from "@/enums/REWARD_CLAIM_STATUS";
-import MissionRewardBatchClaimButton from "./MissionRewardBatchClaimButton";
+import MissionRewardClaimForm from "./MissionRewardClaimButton";
 
 async function getMissionList(usrId) {
   const getMissionListResponse = await fetchWithRetry(
@@ -139,33 +134,7 @@ export default async function MissionList({ usrId }) {
                     </h4>
                   </div>
                 </div>
-                <div className="frame-101-3">
-                  <div className={`frame-97 border-none`}>
-                    {mission.rewardToken == null ||
-                    mission.rewardAmount == null ? null : (
-                      <h4 className={`h4-20`}>
-                        {mission.rewardClaimStatus == null
-                          ? "요청 안됨"
-                          : TRANSACTION_VALUES[
-                              TRANSACTION_CODE[mission.rewardClaimStatus]
-                            ]}
-                      </h4>
-                    )}
-                  </div>
-                </div>
-                <div className="frame-101-3">
-                  <div className={`frame-97 border-none`}>
-                    {mission.rewardToken == null ||
-                    mission.rewardAmount == null ? null : (
-                      <MissionRewardClaimButton
-                        missionId={mission.missionId}
-                        coinNetworkId={mission.rewardToken}
-                        amount={mission.rewardAmount}
-                        rewardClaimStatus={mission.rewardClaimStatus}
-                      />
-                    )}
-                  </div>
-                </div>
+                <MissionRewardClaimForm mission={mission} />
               </div>
             </Fragment>
           ))}
