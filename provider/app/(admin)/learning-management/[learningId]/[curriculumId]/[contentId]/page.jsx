@@ -50,9 +50,15 @@ async function getCoinList() {
       body: JSON.stringify({
         embeds: [
           {
-            url: "/api/coin-networks",
+            title: `/api/coin-networks?network_code=${networkCode}`,
             description: await getCoinListResponse.text(),
-            status: getCoinListResponse.status,
+            fields: [
+              {
+                title: "status",
+                value: getCoinListResponse.status,
+                inline: true,
+              },
+            ],
           },
         ],
       }),
