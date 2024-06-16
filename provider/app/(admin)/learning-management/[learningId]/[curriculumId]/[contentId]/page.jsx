@@ -4,6 +4,7 @@ import MissionEditor from "./MissionEditor";
 import ArticleEditor from "../../ArticleEditor";
 import fetchWithRetry, { fetchPayment } from "@/functions/api";
 import { cookies, headers } from "next/headers";
+import HTTP_METHOD from "@/enums/HTTP_METHOD";
 
 async function getMission(learningId, curriculumId, missionId) {
   const getMissionResponse = await fetchWithRetry(
@@ -41,6 +42,21 @@ async function getCoinList() {
   );
 
   if (!getCoinListResponse.ok) {
+    fetch(process.env.NEXT_PUBLIC_ERROR_NOTI_URL, {
+      method: HTTP_METHOD.POST,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        embeds: [
+          {
+            url: "/api/coin-networks",
+            description: await getCoinListResponse.text(),
+            status: getCoinListResponse.status,
+          },
+        ],
+      }),
+    });
     throw new Error("코인을 조회하는 중 에러가 발생했습니다.");
   }
 
