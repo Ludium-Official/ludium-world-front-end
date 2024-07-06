@@ -99,8 +99,7 @@ const MissionReward = ({
         <div className={`frame-97 border-none`}>
           {mission.status !== "APPROVE" ? (
             <button disabled={true}>
-              {" "}
-              <h4 className="h4-20">검증안됨</h4>{" "}
+              <h4 className="h4-20">검증안됨</h4>
             </button>
           ) : mission.rewardToken == null ||
             mission.rewardAmount == null ? null : (
