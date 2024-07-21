@@ -29,18 +29,40 @@ async function getMission(missionId) {
   return await getMissionResponse.json();
 }
 
+async function getWork(workId) {
+  const getWorkResponse = await fetchWithRetry(
+    `/detailed-announcement/${workId}`
+  );
+
+  if (!getWorkResponse.ok)
+    if (getWorkResponse.status === 404) throw new Error(404);
+    else throw new Error(500);
+
+  return await getWorkResponse.json();
+}
+
 async function Mission({ missionId }) {
   const mission = await getMission(missionId);
 
   return <h2 className="h4-20 color-gray-02">{mission.title}</h2>;
 }
 
+async function Work({ workId }) {
+  const work = await getWork(workId);
+
+  return <h5 className="h5-18 color-gray-02">{work.title}</h5>;
+}
+
 export default async function () {
   const rewards = (await getRewardList()).slice(0, 4);
+
   return (
     <>
       {rewards.map(
-        ({ id, resource_id, detail: { transaction_hash } }, index) => (
+        (
+          { id, resource_id, resource_type, detail: { transaction_hash } },
+          index
+        ) => (
           <Fragment key={id}>
             <div className="frame-40">
               <Link
@@ -48,7 +70,11 @@ export default async function () {
                 href={`${process.env.NEXT_PUBLIC_NEAR_BLOCK_SCAN}/txns/${transaction_hash}`}
                 target="_blank"
               >
-                <Mission missionId={resource_id} />
+                {resource_type === "DETAILED_POSTING" ? (
+                  <Work workId={resource_id} />
+                ) : (
+                  <Mission missionId={resource_id} />
+                )}
               </Link>
             </div>
             {index < rewards.length - 1 ? (
