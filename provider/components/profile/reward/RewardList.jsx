@@ -45,7 +45,7 @@ export default async function RewardList() {
       </div>
       <div className="frame-34 background-white border-gray-06">
         {rewards.map(
-          ({ id, mission_id, detail: { transaction_hash } }, index) => (
+          ({ id, resource_id, detail: { transaction_hash } }, index) => (
             <Fragment key={id}>
               <div className="frame-136">
                 <div className="frame-35">
@@ -55,7 +55,7 @@ export default async function RewardList() {
                       href={`${process.env.NEXT_PUBLIC_NEAR_BLOCK_SCAN}/txns/${transaction_hash}`}
                       target="_blank"
                     > */}
-                    <Mission missionId={mission_id} />
+                    <Mission missionId={resource_id} />
                     {/* </Link> */}
                   </div>
                 </div>

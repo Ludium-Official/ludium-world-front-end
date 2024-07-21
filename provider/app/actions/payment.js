@@ -7,7 +7,8 @@ import { revalidatePath } from "next/cache";
 import { cookies, headers } from "next/headers";
 
 export async function claimMissionReward({
-  missionId,
+  resourceId,
+  resourceType,
   coinNetworkId,
   amount,
   userAddress,
@@ -27,7 +28,8 @@ export async function claimMissionReward({
   const res = await fetchPayment("/api/reward-claims", {
     method: HTTP_METHOD.POST,
     body: JSON.stringify({
-      mission_id: missionId,
+      resource_id: resourceId,
+      resource_type: resourceType,
       coin_network_id: coinNetworkId,
       amount: amount.toString(),
       user_address: userAddress,

@@ -37,11 +37,10 @@ async function Mission({ missionId }) {
 
 export default async function () {
   const rewards = (await getRewardList()).slice(0, 4);
-
   return (
     <>
       {rewards.map(
-        ({ id, mission_id, detail: { transaction_hash } }, index) => (
+        ({ id, resource_id, detail: { transaction_hash } }, index) => (
           <Fragment key={id}>
             <div className="frame-40">
               <Link
@@ -49,7 +48,7 @@ export default async function () {
                 href={`${process.env.NEXT_PUBLIC_NEAR_BLOCK_SCAN}/txns/${transaction_hash}`}
                 target="_blank"
               >
-                <Mission missionId={mission_id} />
+                <Mission missionId={resource_id} />
               </Link>
             </div>
             {index < rewards.length - 1 ? (

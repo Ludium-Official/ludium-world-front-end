@@ -152,7 +152,8 @@ export default function MissionRewardClaimForm({ mission }) {
 
     try {
       await claimMissionReward({
-        missionId: mission.missionId,
+        resourceId: mission.missionId,
+        resourceType: "MISSION",
         coinNetworkId: mission.rewardToken,
         amount: mission.rewardAmount,
         userAddress: accountId,
