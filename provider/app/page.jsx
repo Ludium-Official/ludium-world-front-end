@@ -1,5 +1,4 @@
 import Card from "@/components/card/Card";
-import LabelType from "@/components/card/LabelType";
 import fetchWithRetry from "@/functions/api";
 import dynamic from "next/dynamic";
 import Image from "next/image";
