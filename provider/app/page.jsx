@@ -98,9 +98,9 @@ async function LatestBanner() {
 
 async function Content() {
   return (
-    <article className="home-content">
-      {/* <LatestBanner /> */}
-      <div className="content-article">
+    <article className="frame-58">
+      <LatestBanner />
+      <div className="cards">
         <Top5AnnouncementList />
         <Top5ParticipationList />
       </div>

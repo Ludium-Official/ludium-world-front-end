@@ -1,0 +1,31 @@
+.top-nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 22px 40px;
+  gap: 10px;
+  width: 1193px;
+  height: 72px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray06);
+}
+
+.top-nav > a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.title {
+  color: var(--purple01);
+  font-family: var(--h4-18-font-family);
+  font-style: var(--h4-18-font-style);
+  font-weight: var(--h4-18-font-weight);
+  font-size: var(--h4-18-font-size);
+  line-height: var(--h4-18-line-height);
+  letter-spacing: var(--h4-18-letter-spacing);
+}
