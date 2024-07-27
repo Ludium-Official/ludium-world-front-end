@@ -1,8 +1,8 @@
-import Icon from "@/components/Icon";
+import Card from "@/components/card/Card";
+import LabelType from "@/components/card/LabelType";
 import fetchWithRetry from "@/functions/api";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from "next/link";
 
 export const metadata = {
   metadataBase: process.env.NEXT_PUBLIC_SITE_MAP_URL,
@@ -34,12 +34,28 @@ const LatestAnnouncement = dynamic(
 
 const Top5AnnouncementList = dynamic(
   () => import("./(common)/home/Top5AnnouncementList"),
-  { loading: () => <p>공고 목록을 조회하는 중입니다...</p> }
+  {
+    loading: () => (
+      <Card
+        header={{ link: "/announcement", title: "공고 목록" }}
+        dummy={{ length: 5, title: "공고를 조회하는 중입니다..." }}
+        loading={true}
+      />
+    ),
+  }
 );
 
 const Top5ParticipationList = dynamic(
   () => import("./(common)/home/Top5ParticipationList"),
-  { loading: () => <p>학습 목록을 조회하는 중입니다...</p> }
+  {
+    loading: () => (
+      <Card
+        header={{ link: "/participation", title: "학습 목록" }}
+        dummy={{ length: 5, title: "학습을 조회하는 중입니다..." }}
+        loading={true}
+      />
+    ),
+  }
 );
 
 async function getLatestBanner() {
@@ -52,54 +68,6 @@ async function getLatestBanner() {
     else throw new Error("최신 배너를 조회하는 중 에러가 발생했습니다.");
 
   return await getLatestBannerResponse.json();
-}
-
-async function AnnouncementList() {
-  return (
-    <article className="article-list-wrapper">
-      <header className="article-announce">
-        <h2 className="article-list-text h3-24">공고 목록</h2>
-        <Link className="article-list-more" href="/announcement">
-          <p className="article-list-more-text p1-18">모두 보기</p>
-          <div className="article-list-more-icon">
-            <Icon
-              src="/icon_arrow_right.svg"
-              alt="모든 공고 목록 보기"
-              width={12}
-              height={12}
-            />
-          </div>
-        </Link>
-      </header>
-      <ul className="article-list">
-        <Top5AnnouncementList />
-      </ul>
-    </article>
-  );
-}
-
-async function ParticipationList() {
-  return (
-    <article className="article-list-wrapper">
-      <header className="article-announce">
-        <h2 className="article-list-text h3-24">학습 목록</h2>
-        <Link className="article-list-more" href="/participation">
-          <p className="article-list-more-text p1-18">모두 보기</p>
-          <div className="article-list-more-icon">
-            <Icon
-              src="/icon_arrow_right.svg"
-              alt="모든 학습 목록 보기"
-              width={12}
-              height={12}
-            />
-          </div>
-        </Link>
-      </header>
-      <ul className="article-list">
-        <Top5ParticipationList />
-      </ul>
-    </article>
-  );
 }
 
 async function LatestBanner() {
@@ -134,8 +102,8 @@ async function Content() {
     <article className="home-content">
       {/* <LatestBanner /> */}
       <div className="content-article">
-        <AnnouncementList />
-        <ParticipationList />
+        <Top5AnnouncementList />
+        <Top5ParticipationList />
       </div>
     </article>
   );
