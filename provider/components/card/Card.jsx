@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import Icon from "../Icon";
+import Label from "../label/Label";
 import style from "./card.module.css";
-import LabelType from "./LabelType";
 
 export default function ({ header, contents, loading, dummy }) {
   if (loading) {
@@ -66,10 +66,8 @@ export default function ({ header, contents, loading, dummy }) {
       {contents.map((content, index) => (
         <Fragment key={content.id}>
           <li className={style.list}>
-            {content.label.type === LabelType.Time ? (
-              <label className={style["label-time"]}>
-                {content.label.text}
-              </label>
+            {content.label.type ? (
+              <Label type={content.label.type} text={content.label.text} />
             ) : null}
             <Link className={style["list-title"]} href={content.title.link}>
               <h4>{content.title.text}</h4>
