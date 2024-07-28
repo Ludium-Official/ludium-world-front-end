@@ -1,4 +1,4 @@
-import LabelType from "@/components/label/LabelType";
+import LABEL_TYPE from "@/components/label/LABEL_TYPE";
 import Row from "@/components/table/Row";
 import fetchWithRetry from "@/functions/api";
 import { Fragment } from "react";
@@ -19,9 +19,9 @@ export default async function AnnouncementList() {
       {announcements.map(({ postingId, title }, index) => (
         <Fragment key={postingId}>
           <Row
-            label={{ type: LabelType.Time, text: "마감 미설정" }}
+            label={{ type: LABEL_TYPE.Time, text: "마감 미설정" }}
             title={{ link: `/announcement/${postingId}`, text: title }}
-            fixed={{ label: { type: LabelType.Default, text: "진행중" } }}
+            fixed={{ label: { type: LABEL_TYPE.Default, text: "진행중" } }}
           />
           {index < announcements.length - 1 ? (
             <div className="line border-gray-05" />

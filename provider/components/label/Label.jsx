@@ -1,12 +1,12 @@
 import style from "./label.module.css";
-import LabelType from "./LabelType";
+import LABEL_TYPE from "./LABEL_TYPE";
 
 export default function ({ type, text }) {
-  if (type === LabelType.Time) {
+  if (type === LABEL_TYPE.Time) {
     return <label className={style.time}>{text}</label>;
   }
 
-  if (type === LabelType.Default) {
+  if (type === LABEL_TYPE.Default) {
     return <label className={style.default}>{text}</label>;
   }
 

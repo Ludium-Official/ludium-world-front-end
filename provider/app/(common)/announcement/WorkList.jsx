@@ -1,4 +1,4 @@
-import LabelType from "@/components/label/LabelType";
+import LABEL_TYPE from "@/components/label/LABEL_TYPE";
 import RowWithButton from "@/components/table/RowWithButton";
 import APPLY_CATEGORY from "@/enums/APPLY_CATEGORY";
 import fetchWithRetry from "@/functions/api";
@@ -46,9 +46,9 @@ export default async function WorkList() {
       {works.map(async ({ postingId, detailId, title, status }, index) => (
         <Fragment key={detailId}>
           <RowWithButton
-            label={{ type: LabelType.Time, text: ko_kr[status] }}
+            label={{ type: LABEL_TYPE.Time, text: ko_kr[status] }}
             title={{ link: `/work/${detailId}`, text: title }}
-            fixed={{ label: { type: LabelType.Default, text: "진행중" } }}
+            fixed={{ label: { type: LABEL_TYPE.Default, text: "진행중" } }}
             caption={{
               className: style.worker,
               text: `작업자: ${(await getWorker(detailId)) ?? "없음"}`,

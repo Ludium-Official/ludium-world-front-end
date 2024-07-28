@@ -1,5 +1,5 @@
 import Card from "@/components/card/Card";
-import LabelType from "@/components/label/LabelType";
+import LABEL_TYPE from "@/components/label/LABEL_TYPE";
 import fetchWithRetry from "@/functions/api";
 
 async function getTop5Participation() {
@@ -18,7 +18,7 @@ async function getTop5Participation() {
       text: title,
     },
     label: {
-      type: LabelType.Time,
+      type: LABEL_TYPE.Time,
       text: "수강기한 미설정",
     },
   }));
