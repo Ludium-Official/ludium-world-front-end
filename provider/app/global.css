@@ -34,13 +34,10 @@
 /* style guide end */
 
 .wrapper {
-  position: absolute;
-  left: 287px;
-  top: 72px;
-  width: Calc(100% - 327px);
+  width: 1113px;
   padding-top: 40px;
   height: 912px;
-  overflow-y: auto;
+  overflow-y: hidden;
   /* height: 1438px;
   min-height: calc(100vh - 135px); */
 }

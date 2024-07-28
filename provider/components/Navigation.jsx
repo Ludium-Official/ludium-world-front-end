@@ -53,10 +53,10 @@ export default async function Navigation() {
           href="/announcement"
           iconClass="icon-announcement"
           src="/icon_announcement.svg"
-          alt="공고 지원 페이지로 이동하기"
+          alt="공고 페이지로 이동하기"
           width={17.2}
           height={20.62}
-          text="공고 지원"
+          text="공고"
         />
         <GnbMenu
           href="/work"
