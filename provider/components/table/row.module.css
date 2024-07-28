@@ -29,6 +29,15 @@
   color: var(--gray02);
 }
 
+.cell > p {
+  font-family: var(--caption-12-font-family);
+  font-style: var(--caption-12-font-style);
+  font-weight: var(--caption-12-font-weight);
+  font-size: var(--caption-12-font-size);
+  line-height: var(--caption-12-line-height);
+  color: var(--gray04);
+}
+
 .cell-fixed {
   display: flex;
   flex-direction: row;
@@ -36,11 +45,6 @@
   align-items: center;
   padding: 24px 20px;
   gap: 8px;
-
   width: 106px;
-  /* Inside auto layout */
-  flex: none;
-  order: 10;
   align-self: stretch;
-  flex-grow: 0;
 }

@@ -8,6 +8,10 @@ const AnnouncementList = dynamic(() => import("./AnnouncementList"), {
   loading: () => <p>공고를 조회하는 중입니다...</p>,
 });
 
+const WorkList = dynamic(() => import("./WorkList"), {
+  loading: () => <p>작업을 불러오는 중입니다...</p>,
+});
+
 export const metadata = {
   metadataBase: process.env.NEXT_PUBLIC_SITE_MAP_URL,
   title: "웹 3.0 프로젝트 공고",
@@ -42,6 +46,10 @@ export default async function AnnouncementPage() {
           <section className={style.list}>
             <CardTitle className={style["row-title"]} title="공고 목록" />
             <AnnouncementList />
+          </section>
+          <section className={style.list}>
+            <CardTitle className={style["row-title"]} title="작업 목록" />
+            <WorkList />
           </section>
         </div>
       </article>
