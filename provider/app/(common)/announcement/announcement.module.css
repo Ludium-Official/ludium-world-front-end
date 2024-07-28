@@ -36,6 +36,7 @@
   width: 1033px !important;
   position: fixed;
   background-color: var(--white);
+  padding: 20px 0 !important;
 }
 
 .list > div:nth-child(2) {
@@ -80,4 +81,61 @@
   font-size: var(--h5-16-font-size);
   line-height: var(--h5-16-line-height);
   color: var(--white);
+}
+
+.viewer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 40px;
+  width: 1113px;
+  background: var(--white);
+  border: 1px solid var(--gray06);
+  border-radius: 20px;
+}
+
+.viewer-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 0;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.viewer-title > div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.viewer-title > div > h4 {
+  width: 128px;
+  font-family: var(--h4-18-font-family);
+  font-style: var(--h4-18-font-style);
+  font-weight: var(--h4-18-font-weight);
+  font-size: var(--h4-18-font-size);
+  line-height: var(--h4-18-line-height);
+  letter-spacing: var(--h4-18-letter-spacing);
+  color: var(--black);
+}
+
+.viewer-contents {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 0;
+  gap: 4px;
+  align-self: stretch;
+  height: 360px;
+}
+
+.loading {
+  padding-top: 68px !important;
 }
