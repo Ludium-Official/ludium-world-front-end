@@ -1,6 +1,8 @@
 import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
 import TopNavigation from "@/components/navigation/TopNavigation";
 import dynamic from "next/dynamic";
+import style from "./announcement.module.css";
+import CardTitle from "@/components/card/CardTitle";
 
 const AnnouncementList = dynamic(() => import("./AnnouncementList"), {
   loading: () => <p>공고를 조회하는 중입니다...</p>,
@@ -32,17 +34,15 @@ export default async function AnnouncementPage() {
   return (
     <>
       <TopNavigation type={TOP_NAV_TYPE.OTHERS} />
-      {/* <header className="nb">
-        <BackButton />
-      </header> */}
       <article className="wrapper">
         <div className="frame-93-7">
-          <div className="frame-57">
-            <h1 className="h3-24 color-black">공고 목록</h1>
+          <div className={style.title}>
+            <h3>공고 수행</h3>
           </div>
-          <div className="frame-34">
+          <section className={style.list}>
+            <CardTitle className={style["row-title"]} title="공고 목록" />
             <AnnouncementList />
-          </div>
+          </section>
         </div>
       </article>
     </>
