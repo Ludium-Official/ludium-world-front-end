@@ -42,7 +42,7 @@ export default async function WorkList() {
   console.log(works);
 
   return (
-    <div className="frame-119">
+    <>
       {works.map(async ({ postingId, detailId, title, status }, index) => (
         <Fragment key={detailId}>
           <RowWithButton
@@ -64,6 +64,6 @@ export default async function WorkList() {
           ) : null}
         </Fragment>
       ))}
-    </div>
+    </>
   );
 }
