@@ -13,7 +13,7 @@ async function getWorkList() {
     if (getWorkResponse.status === 404) return [];
     else throw new Error("작업 목록을 조회하는 중 에러가 발생했습니다.");
 
-  return await getWorkResponse.json();
+  return getWorkResponse.json();
 }
 
 async function getWorker(workId) {
@@ -39,8 +39,6 @@ async function getWorker(workId) {
 export default async function WorkList() {
   const works = await getWorkList();
 
-  console.log(works);
-
   return (
     <>
       {works.map(async ({ postingId, detailId, title, status }, index) => (
@@ -48,7 +46,6 @@ export default async function WorkList() {
           <RowWithButton
             label={{ type: LABEL_TYPE.Time, text: ko_kr[status] }}
             title={{ link: `/work/${detailId}`, text: title }}
-            fixed={{ label: { type: LABEL_TYPE.Default, text: "진행중" } }}
             caption={{
               className: style.worker,
               text: `작업자: ${(await getWorker(detailId)) ?? "없음"}`,

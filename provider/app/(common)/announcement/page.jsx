@@ -3,13 +3,37 @@ import TopNavigation from "@/components/navigation/TopNavigation";
 import dynamic from "next/dynamic";
 import style from "./announcement.module.css";
 import CardTitle from "@/components/card/CardTitle";
+import Row from "@/components/table/Row";
+import LABEL_TYPE from "@/components/label/LABEL_TYPE";
+import RowWithButton from "@/components/table/RowWithButton";
 
 const AnnouncementList = dynamic(() => import("./AnnouncementList"), {
-  loading: () => <p>공고를 조회하는 중입니다...</p>,
+  loading: () => (
+    <Row
+      label={{ type: LABEL_TYPE.Time, text: "조회중" }}
+      title={{
+        link: "javascript:void(0)",
+        text: "공고를 조회하는 중입니다...",
+      }}
+      fixed={{ label: { type: LABEL_TYPE.Default, text: "진행중" } }}
+      loading={true}
+      loadingClassName={style.loading}
+    />
+  ),
 });
 
 const WorkList = dynamic(() => import("./WorkList"), {
-  loading: () => <p>작업을 불러오는 중입니다...</p>,
+  loading: () => (
+    <RowWithButton
+      label={{ type: LABEL_TYPE.Time, text: "조회중" }}
+      title={{
+        link: "javascript:void(0)",
+        text: "작업을 조회하는 중입니다...",
+      }}
+      loading={true}
+      loadingClassName={style.loading}
+    />
+  ),
 });
 
 export const metadata = {

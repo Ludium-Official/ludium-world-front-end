@@ -8,7 +8,7 @@ async function getAnnouncementList() {
 
   if (!getannouncementsResponse.ok) return [];
 
-  return await getannouncementsResponse.json();
+  return getannouncementsResponse.json();
 }
 
 export default async function AnnouncementList() {
