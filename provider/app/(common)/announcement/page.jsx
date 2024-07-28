@@ -1,4 +1,5 @@
-import BackButton from "@/components/BackButton";
+import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
+import TopNavigation from "@/components/navigation/TopNavigation";
 import dynamic from "next/dynamic";
 
 const AnnouncementList = dynamic(() => import("./AnnouncementList"), {
@@ -30,9 +31,10 @@ export const metadata = {
 export default async function AnnouncementPage() {
   return (
     <>
-      <header className="nb">
+      <TopNavigation type={TOP_NAV_TYPE.OTHERS} />
+      {/* <header className="nb">
         <BackButton />
-      </header>
+      </header> */}
       <article className="wrapper">
         <div className="frame-93-7">
           <div className="frame-57">

@@ -1,4 +1,4 @@
-.top-nav {
+.home {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   border-bottom: 1px solid var(--gray06);
 }
 
-.top-nav > a {
+.home > a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -28,4 +28,18 @@
   font-size: var(--h4-18-font-size);
   line-height: var(--h4-18-line-height);
   letter-spacing: var(--h4-18-letter-spacing);
+}
+
+.others {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22px 40px;
+  gap: 915px;
+  width: 1193px;
+  height: 72px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray06);
 }
