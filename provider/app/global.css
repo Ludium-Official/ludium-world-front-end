@@ -975,6 +975,7 @@ body {
   border: none;
   background: var(--white);
   cursor: pointer;
+  text-decoration: unset;
 }
 
 .back-button-icon {
