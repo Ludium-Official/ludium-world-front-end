@@ -35,6 +35,12 @@
   --h5-16-font-weight: 700;
   --h5-16-font-size: 16px;
   --h5-16-line-height: 26px;
+  --p1-16-font-family: "Pretendard Variable";
+  --p1-16-font-style: normal;
+  --p1-16-font-weight: 400;
+  --p1-16-font-size: 16px;
+  --p1-16-line-height: 26px;
+  --p1-16-letter-spacing: -0.005em;
   --caption-12-font-family: "Pretendard Variable";
   --caption-12-font-style: normal;
   --caption-12-font-weight: 400;
@@ -2395,15 +2401,6 @@ p {
   line-height: 27px !important;
 }
 
-.toastui-editor-contents p,
-.ProseMirror,
-.toastui-editor-contents {
-  font-weight: 400;
-  font-size: 18px !important;
-  line-height: 27px !important;
-  letter-spacing: -0.005em;
-}
-
 .toastui-editor-contents ul > li:before {
   margin-top: 12px !important;
 }
@@ -2420,6 +2417,16 @@ p {
 
 .toastui-editor-contents *:not(table) {
   line-height: 27px !important;
+}
+
+.toastui-editor-contents p,
+.ProseMirror,
+.toastui-editor-contents {
+  font-weight: var(--p1-16-font-weight);
+  font-size: var(--p1-16-font-size);
+  line-height: var(--p1-16-line-height) !important;
+  letter-spacing: var(--p1-16-letter-spacing);
+  color: var(--gray01) !important;
 }
 
 .signup-editor {
