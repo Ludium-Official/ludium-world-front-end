@@ -1,0 +1,50 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0;
+  width: 1033px;
+}
+
+.cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px 20px;
+  gap: 8px;
+  width: 100%;
+}
+
+.cell > a {
+  text-decoration: none;
+}
+
+.cell > a > h4 {
+  font-family: var(--h4-18-font-family);
+  font-style: var(--h4-18-font-style);
+  font-weight: var(--h4-18-font-weight);
+  font-size: var(--h4-18-font-size);
+  line-height: var(--h4-18-line-height);
+  letter-spacing: var(--h4-18-letter-spacing);
+  color: var(--gray02);
+}
+
+.cell > p {
+  font-family: var(--caption-12-font-family);
+  font-style: var(--caption-12-font-style);
+  font-weight: var(--caption-12-font-weight);
+  font-size: var(--caption-12-font-size);
+  line-height: var(--caption-12-line-height);
+  color: var(--gray04);
+}
+
+.cell-fixed {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 20px;
+  gap: 8px;
+  width: 106px;
+  align-self: stretch;
+}

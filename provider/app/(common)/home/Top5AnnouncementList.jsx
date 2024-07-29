@@ -1,5 +1,5 @@
 import Card from "@/components/card/Card";
-import LabelType from "@/components/card/LabelType";
+import LABEL_TYPE from "@/components/label/LABEL_TYPE";
 import fetchWithRetry from "@/functions/api";
 
 async function getTop5Announcement() {
@@ -20,8 +20,8 @@ async function getTop5Announcement() {
       text: title,
     },
     label: {
-      type: LabelType.Time,
-      text: "마감 N일전",
+      type: LABEL_TYPE.Time,
+      text: "마감 미설정",
     },
   }));
 }

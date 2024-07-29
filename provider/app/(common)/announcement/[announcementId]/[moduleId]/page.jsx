@@ -1,10 +1,12 @@
-import BackButton from "@/components/BackButton";
 import Icon from "@/components/Icon";
+import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
+import TopNavigation from "@/components/navigation/TopNavigation";
 import APPLY_CATEGORY from "@/enums/APPLY_CATEGORY";
 import fetchWithRetry from "@/functions/api";
 import { getDate } from "@/functions/helper";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import style from "@/app/(common)/announcement/announcement.module.css";
 
 const Viewer = dynamic(() => import("@/components/Viewer"), { ssr: false });
 
@@ -25,31 +27,25 @@ export async function DetailedAnnouncement({ announcementId, moduleId }) {
   );
 
   return (
-    <div className="frame-151">
-      <div className="frame-149">
-        <div className="frame background-white border-gray-06">
-          <div className="frame-101">
-            <div className="frame-9">
-              <div className="frame-145">
-                <h1 className="h4-20 color-black">
-                  {detailedAnnouncement.title}
-                </h1>
-              </div>
-              <div className="frame-9-3">
-                <p className="caption-12 color-gray-04">
-                  작성일: {getDate(detailedAnnouncement.createAt)}
-                </p>
-              </div>
+    <article className={style["divided-viewer"]}>
+      <section>
+        <div className="frame-101">
+          <div className={`${style["frame-9"]}`}>
+            <div className={`${style["frame-145"]} frame-145`}>
+              <h4>{detailedAnnouncement.title}</h4>
+            </div>
+            <div className={`${style["frame-9-2"]}`}>
+              <p>작성일: {getDate(detailedAnnouncement.createAt)}</p>
             </div>
           </div>
         </div>
-        <div className="frame background-white border-gray-06">
-          <div className="frame-120">
-            <Viewer content={detailedAnnouncement.description} />
-          </div>
+      </section>
+      <section>
+        <div className="frame-120">
+          <Viewer content={detailedAnnouncement.description} />
         </div>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }
 
@@ -58,22 +54,22 @@ export default async function DetailedAnnouncementPage({
 }) {
   return (
     <>
-      <header className="nb">
-        <BackButton />
-        <Link
-          className="frame-56 link"
-          href={`/announcement/${announcementId}/${moduleId}/apply?role=${APPLY_CATEGORY.PROVIDER}`}
-        >
-          <Icon src="/icon_plus.svg" alt="추가하기" width={24} height={24} />
-          <p className="h4-20 color-purple-01">지원하기</p>
-        </Link>
-      </header>
-      <article className="wrapper">
-        <DetailedAnnouncement
-          announcementId={announcementId}
-          moduleId={moduleId}
-        />
-      </article>
+      <TopNavigation
+        type={TOP_NAV_TYPE.OTHERS}
+        right={
+          <Link
+            className={style["right-menu"]}
+            href={`/announcement/${announcementId}/${moduleId}/apply?role=${APPLY_CATEGORY.PROVIDER}`}
+          >
+            <Icon src="/icon_plus.svg" alt="추가하기" width={24} height={24} />
+            <p className="h4-20 color-purple-01">지원하기</p>
+          </Link>
+        }
+      />
+      <DetailedAnnouncement
+        announcementId={announcementId}
+        moduleId={moduleId}
+      />
     </>
   );
 }

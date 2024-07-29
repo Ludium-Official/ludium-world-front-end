@@ -1,5 +1,6 @@
 import fetchWithRetry from "@/functions/api";
 import TopNavigation from "./navigation/TopNavigation";
+import TOP_NAV_TYPE from "./navigation/TOP_NAV_TYPE";
 
 async function getLatestAnnouncement() {
   const getLatestAnnouncementResponse = await fetchWithRetry(
@@ -22,6 +23,7 @@ export default async function LatestAnnouncement() {
 
   return (
     <TopNavigation
+      type={TOP_NAV_TYPE.HOME}
       link={
         latestAnnouncement == null
           ? "/"

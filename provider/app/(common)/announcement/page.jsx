@@ -1,8 +1,39 @@
-import BackButton from "@/components/BackButton";
+import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
+import TopNavigation from "@/components/navigation/TopNavigation";
 import dynamic from "next/dynamic";
+import style from "./announcement.module.css";
+import CardTitle from "@/components/card/CardTitle";
+import Row from "@/components/table/Row";
+import LABEL_TYPE from "@/components/label/LABEL_TYPE";
+import RowWithButton from "@/components/table/RowWithButton";
 
 const AnnouncementList = dynamic(() => import("./AnnouncementList"), {
-  loading: () => <p>공고를 조회하는 중입니다...</p>,
+  loading: () => (
+    <Row
+      label={{ type: LABEL_TYPE.Time, text: "조회중" }}
+      title={{
+        link: "javascript:void(0)",
+        text: "공고를 조회하는 중입니다...",
+      }}
+      fixed={{ label: { type: LABEL_TYPE.Default, text: "진행중" } }}
+      loading={true}
+      loadingClassName={style.loading}
+    />
+  ),
+});
+
+const WorkList = dynamic(() => import("./WorkList"), {
+  loading: () => (
+    <RowWithButton
+      label={{ type: LABEL_TYPE.Time, text: "조회중" }}
+      title={{
+        link: "javascript:void(0)",
+        text: "작업을 조회하는 중입니다...",
+      }}
+      loading={true}
+      loadingClassName={style.loading}
+    />
+  ),
 });
 
 export const metadata = {
@@ -30,17 +61,20 @@ export const metadata = {
 export default async function AnnouncementPage() {
   return (
     <>
-      <header className="nb">
-        <BackButton />
-      </header>
+      <TopNavigation type={TOP_NAV_TYPE.OTHERS} />
       <article className="wrapper">
         <div className="frame-93-7">
-          <div className="frame-57">
-            <h1 className="h3-24 color-black">공고 목록</h1>
+          <div className={style.title}>
+            <h3>공고 수행</h3>
           </div>
-          <div className="frame-34">
+          <section className={style.list}>
+            <CardTitle className={style["row-title"]} title="공고 목록" />
             <AnnouncementList />
-          </div>
+          </section>
+          <section className={style.list}>
+            <CardTitle className={style["row-title"]} title="작업 목록" />
+            <WorkList />
+          </section>
         </div>
       </article>
     </>

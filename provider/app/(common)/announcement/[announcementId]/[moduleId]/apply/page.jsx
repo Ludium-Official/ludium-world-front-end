@@ -1,8 +1,10 @@
+import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
+import TopNavigation from "@/components/navigation/TopNavigation";
 import fetchWithRetry from "@/functions/api";
 import { cookies } from "next/headers";
 import ApplyForm from "./ApplyForm";
 import RedirectEditPage from "./RedirectEditPage";
-import BackButton from "@/components/BackButton";
+import style from "@/app/(common)/announcement/announcement.module.css";
 
 export const metadata = {
   title: "지원서 작성",
@@ -64,24 +66,16 @@ export default async function ApplyPage({
 
   return (
     <>
-      <header className="nb">
-        <BackButton />
-      </header>
-      <article className="wrapper">
-        <div className="frame-93">
-          <div className="frame-57">
-            <h1 className="h3-24 color-black">지원서 작성</h1>
-          </div>
-          <div className="frame-34-4">
-            <div className="frame-117">
-              <ApplyForm
-                announcementId={announcementId}
-                detailId={moduleId}
-                applicationTemplate={applicationTemplate}
-              />
-            </div>
-          </div>
-        </div>
+      <TopNavigation type={TOP_NAV_TYPE.OTHERS} />
+      <article className={style.editor}>
+        <section>
+          <h3>지원서 작성</h3>
+        </section>
+        <ApplyForm
+          announcementId={announcementId}
+          detailId={moduleId}
+          applicationTemplate={applicationTemplate}
+        />
       </article>
     </>
   );

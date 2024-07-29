@@ -1,6 +1,8 @@
 "use client";
 
 import BackButton from "@/components/BackButton";
+import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
+import TopNavigation from "@/components/navigation/TopNavigation";
 
 export default function ApplyErrorPage({ error }) {
   const getApplicationErrorComponents = (status) => {
@@ -24,9 +26,7 @@ export default function ApplyErrorPage({ error }) {
 
   return (
     <>
-      <header className="nb">
-        <BackButton />
-      </header>
+      <TopNavigation type={TOP_NAV_TYPE.OTHERS} />
       <article className="wrapper">
         <div className="frame">
           {getApplicationErrorComponents(error.message)}
