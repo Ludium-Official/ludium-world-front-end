@@ -1,6 +1,8 @@
-import BackButton from "@/components/BackButton";
+import TopNavigation from "@/components/navigation/TopNavigation";
 import { getApplication } from "../page";
 import EditApplyForm from "./EditApplyForm";
+import style from "@/app/(common)/announcement/announcement.module.css";
+import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
 
 export default async function EditApply({
   params: { announcementId, moduleId },
@@ -10,24 +12,16 @@ export default async function EditApply({
 
   return (
     <>
-      <header className="nb">
-        <BackButton />
-      </header>
-      <article className="wrapper">
-        <div className="frame-93">
-          <div className="frame-57">
-            <h1 className="h3-24 color-black">지원서 작성</h1>
-          </div>
-          <div className="frame-34-4 background-white border-gray-06">
-            <div className="frame-117">
-              <EditApplyForm
-                announcementId={announcementId}
-                detailId={moduleId}
-                application={application}
-              />
-            </div>
-          </div>
-        </div>
+      <TopNavigation type={TOP_NAV_TYPE.OTHERS} />
+      <article className={style.editor}>
+        <section className="frame-57">
+          <h3>지원서 수정</h3>
+        </section>
+        <EditApplyForm
+          announcementId={announcementId}
+          detailId={moduleId}
+          application={application}
+        />
       </article>
     </>
   );

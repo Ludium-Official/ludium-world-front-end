@@ -309,6 +309,13 @@
   border: 1px solid var(--gray05);
   border-radius: 8px;
   align-self: stretch;
+  font-family: var(--p1-16-font-family);
+  font-style: var(--p1-16-font-style);
+  font-weight: var(--p1-16-font-weight);
+  font-size: var(--p1-16-font-size);
+  line-height: var(--p1-16-line-height);
+  letter-spacing: var(--p1-16-letter-spacing);
+  color: var(--gray04);
 }
 
 .editor > form > div > div {

@@ -40,8 +40,6 @@ export default function ApplyForm({
     }
   };
 
-  console.log(applicationTemplate);
-
   return (
     <form action={handleApplyForm}>
       <div>

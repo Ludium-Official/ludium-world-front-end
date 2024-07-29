@@ -1,6 +1,7 @@
 "use client";
 
-import BackButton from "@/components/BackButton";
+import TOP_NAV_TYPE from "@/components/navigation/TOP_NAV_TYPE";
+import TopNavigation from "@/components/navigation/TopNavigation";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -17,14 +18,12 @@ export default function RedirectEditPage({ announcementId, moduleId, role }) {
 
   return (
     <>
-      <header className="nb">
-        <BackButton />
-      </header>
+      <TopNavigation type={TOP_NAV_TYPE.OTHERS} />
       <article className="wrapper">
-        <div className="frame ">
-          <h1 className="h3-24">
+        <div className="frame">
+          <h3 className="h3-24">
             이미 지원서를 제출했습니다. 곧 지원서 수정페이지로 연결됩니다.
-          </h1>
+          </h3>
         </div>
       </article>
     </>
