@@ -11,11 +11,7 @@ const SubmitButton = () => {
   const { pending } = useFormStatus();
 
   return (
-    <button
-      className="button-L-2 background-purple-01 h5-18 color-white"
-      type="submit"
-      disabled={pending}
-    >
+    <button type="submit" disabled={pending}>
       {pending ? "지원서를 제출하는 중입니다..." : "제출하기"}
     </button>
   );
@@ -44,14 +40,13 @@ export default function ApplyForm({
     }
   };
 
+  console.log(applicationTemplate);
+
   return (
-    <form className="frame-116" action={handleApplyForm}>
-      <div className="input-2">
-        <label className="h5-18 color-gray-03" htmlFor="title">
-          제목
-        </label>
+    <form action={handleApplyForm}>
+      <div>
+        <label htmlFor="title">제목</label>
         <input
-          className="frame-102-3 background-white border-gray-05 p1-18 color-gray-04"
           type="text"
           name="title"
           id="title"
@@ -59,9 +54,10 @@ export default function ApplyForm({
           readOnly
         />
       </div>
-      <div className="input-2">
-        <p className="h5-18 color-gray-03">내용</p>
-        <div className="frame-102-4 background-white content-editor">
+      <div>
+        <label htmlFor="content">내용</label>
+        <input type="hidden" name="" />
+        <div>
           <Editor
             editorRef={editorRef}
             height="100%"
@@ -69,9 +65,7 @@ export default function ApplyForm({
           />
         </div>
       </div>
-      <div className="frame-157">
-        <SubmitButton />
-      </div>
+      <SubmitButton />
     </form>
   );
 }
