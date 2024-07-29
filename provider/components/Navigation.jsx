@@ -59,14 +59,6 @@ export default async function Navigation() {
           text="공고"
         />
         <GnbMenu
-          href="/work"
-          src="/icon_note.svg"
-          alt="작업 수행 페이지로 이동하기"
-          width={24}
-          height={24}
-          text="작업 수행"
-        />
-        <GnbMenu
           href="/participation"
           src="/icon_learning.svg"
           alt="학습 참여 페이지로 이동하기"

@@ -970,20 +970,10 @@ body {
   align-items: center;
   padding: 0;
   gap: 16px;
-  width: 109px;
-  height: 30px;
   border: none;
   background: var(--white);
   cursor: pointer;
   text-decoration: unset;
-}
-
-.back-button-icon {
-  position: absolute;
-  width: 18.46px;
-  height: 18.46px;
-  left: 2.77px;
-  top: 2.77px;
 }
 
 .back-button-text {
