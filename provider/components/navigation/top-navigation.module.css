@@ -42,3 +42,38 @@
   background: var(--white);
   border-bottom: 1px solid var(--gray06);
 }
+
+.others > a:first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 16px;
+  border: none;
+  background: var(--white);
+  cursor: pointer;
+  text-decoration: unset;
+}
+
+.others > a:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  margin: 0;
+  text-decoration: unset;
+}
+
+.others > a:nth-child(2) > h4 {
+  font-family: var(--h4-18-font-family);
+  font-style: var(--h4-18-font-style);
+  font-weight: var(--h4-18-font-weight);
+  font-size: var(--h4-18-font-size);
+  line-height: var(--h4-18-line-height);
+  text-align: var(--h4-18-text-align);
+  letter-spacing: var(--h4-18-letter-spacing);
+  color: var(--purple01);
+}
