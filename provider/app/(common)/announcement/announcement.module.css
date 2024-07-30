@@ -140,17 +140,6 @@
   padding-top: 68px !important;
 }
 
-.right-menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0px;
-  gap: 16px;
-  margin: 0;
-  text-decoration: unset;
-}
-
 .divided-viewer {
   display: flex;
   flex-direction: column;
